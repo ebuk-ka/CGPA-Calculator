@@ -1,31 +1,31 @@
 const form = document.getElementById("gpaForm");
-const subjectsDiv = document.getElementById("subjects");
+const subjectDiv = document.getElementById("subjects");
 const resultDiv = document.getElementById("result");
 const addBtn = document.getElementById("addSubject");
 
 
 function getPoints(score) {
-  if (score >= 70) return 5;     // A
-  else if (score >= 60) return 4; // B
-  else if (score >= 50) return 3; // C
-  else if (score >= 45) return 2; // D
-  else if (score >= 40) return 1; // E
-  else return 0;                  // F
+  if (score >= 70) return 5;  //A
+  else if (score >= 60) return 4; //B
+  else if (score >= 50) return 3; //C
+  else if (score >= 45) return 2; //D
+  else if (score >= 40) return 1; //E
+  else return 0; //F
 }
 
-// add new subject input row
+
 function addSubject() {
   const div = document.createElement("div");
   div.classList.add("subject");
   div.innerHTML = `
-    <input type="number" placeholder="Score" class="score" required>
-    <input type="number" placeholder="Units" class="units" required>
+  <input type= "number" placeholder="Score" class="score" required>
+  <input type= "number" placeholder="Units" class="units" required>
   `;
-  subjectsDiv.appendChild(div);
+  subjectDiv.appendChild(div);
 }
 
-// calculate GPA
-form.addEventListener("submit", function(e) {
+
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const scores = document.querySelectorAll(".score");
@@ -33,7 +33,7 @@ form.addEventListener("submit", function(e) {
 
   let totalQualityPoints = 0;
   let totalUnits = 0;
-
+   
   scores.forEach((scoreInput, i) => {
     let score = parseInt(scoreInput.value);
     let unit = parseInt(units[i].value);
@@ -45,7 +45,7 @@ form.addEventListener("submit", function(e) {
   });
 
   let gpa = (totalQualityPoints / totalUnits).toFixed(2);
-  resultDiv.textContent = `Your GPA is: ${gpa}`;
+  resultDiv.textContent = `Your GPA is ${gpa}`;
 });
 
 addSubject();
